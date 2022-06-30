@@ -13,9 +13,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Register DbContext
 builder.Services.AddScoped<DbContext, DemoDbContext>();
 builder.Services.AddDbContext<DemoDbContext>(opts => opts.UseSqlServer(builder.Configuration["ConnectionString:DBBlog"]));
 builder.Services.AddScoped<DemoDbContext>();
+// Register repositories
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
